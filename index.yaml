@@ -13,6 +13,42 @@ entries:
       licenses: MIT
     apiVersion: v2
     appVersion: latest
+    created: "2024-06-14T09:37:23.054147806Z"
+    dependencies:
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.3.1
+    - condition: vespa.enabled
+      name: vespa
+      repository: https://unoplat.github.io/vespa-helm-charts
+      version: 0.2.3
+    - condition: nginx.enabled
+      name: nginx
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 15.14.0
+    description: A Helm chart for Kubernetes
+    digest: f40b566254f0f09ad8d4b1df2d5689be7357ab3a6a8c344cf4a87b229d509744
+    home: https://www.danswer.ai/
+    name: danswer-stack
+    sources:
+    - https://github.com/danswer-ai/danswer
+    type: application
+    urls:
+    - https://github.com/sd109/danswer/releases/download/danswer-helm-0.2.1/danswer-stack-0.2.1.tgz
+    version: 0.2.1
+  - annotations:
+      category: Productivity
+      images: |
+        - name: webserver
+          image: docker.io/danswer/danswer-web-server:latest
+        - name: background
+          image: docker.io/danswer/danswer-backend:latest
+        - name: vespa
+          image: vespaengine/vespa:8.277.17
+      licenses: MIT
+    apiVersion: v2
+    appVersion: latest
     created: "2024-06-10T16:52:05.817174594Z"
     dependencies:
     - condition: postgresql.enabled
@@ -37,4 +73,4 @@ entries:
     urls:
     - https://github.com/sd109/danswer/releases/download/danswer-stack-0.2.0/danswer-stack-0.2.0.tgz
     version: 0.2.0
-generated: "2024-06-10T16:52:05.817184452Z"
+generated: "2024-06-14T09:37:23.054160098Z"
