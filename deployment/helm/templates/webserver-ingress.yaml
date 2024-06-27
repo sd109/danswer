@@ -1,0 +1,29 @@
+{{- if and .Values.webserver.ingress .Values.webserver.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  {{ if .Values.webserver.ingress.annotations -}}
+  annotations:
+    {{- .Values.webserver.ingress.annotations | toYaml | nindent 4 }}
+  {{ end -}}
+  name: {{ include "danswer-stack.fullname" . }}-webserver
+spec:
+  ingressClassName: {{ required "webserver.ingress.className is required when ingress is enabled" .Values.webserver.ingress.className }}
+  rules:
+  - http:
+      paths:
+      - path: {{ .Values.webserver.ingress.path }}
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "danswer-stack.fullname" . }}-webserver
+            port:
+              number: {{ .Values.webserver.service.port }}
+    host: {{ (required "webserver.ingress.host is required when ingress is enabled" .Values.webserver.ingress.host) | quote }}
+  {{- if .Values.webserver.ingress.tls }}
+  tls:
+  - hosts:
+    - {{ .Values.webserver.ingress.host | quote }}
+    secretName: {{ include "danswer-stack.fullname" . }}-webserver-tls
+  {{- end -}}
+{{- end -}}
