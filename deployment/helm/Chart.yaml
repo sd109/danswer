@@ -5,7 +5,7 @@ home: https://www.danswer.ai/
 sources:
   - "https://github.com/danswer-ai/danswer"
 type: application
-version: 0.2.3
+version: 0.2.4
 appVersion: "v0.3.92"
 annotations:
   category: Productivity
