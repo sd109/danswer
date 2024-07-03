@@ -6,7 +6,7 @@ sources:
   - "https://github.com/danswer-ai/danswer"
 type: application
 version: 0.2.2
-appVersion: "latest"
+appVersion: "v0.3.92"
 annotations:
   category: Productivity
   licenses: MIT
