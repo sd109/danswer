@@ -2,8 +2,8 @@ FROM python:3.11.7-slim-bookworm
 
 LABEL com.danswer.maintainer="founders@danswer.ai"
 LABEL com.danswer.description="This image is for the backend of Danswer. It is MIT Licensed and \
-free for all to use. You can find it at https://hub.docker.com/r/danswer/danswer-backend. For \
-more details, visit https://github.com/danswer-ai/danswer."
+    free for all to use. You can find it at https://hub.docker.com/r/danswer/danswer-backend. For \
+    more details, visit https://github.com/danswer-ai/danswer."
 
 # Default DANSWER_VERSION, typically overriden during builds by GitHub Actions.
 ARG DANSWER_VERSION=0.3-dev
@@ -47,9 +47,9 @@ RUN python -c "from transformers import AutoTokenizer; AutoTokenizer.from_pretra
 
 # Pre-downloading NLTK for setups with limited egress
 RUN python -c "import nltk; \
-nltk.download('stopwords', quiet=True); \
-nltk.download('wordnet', quiet=True); \
-nltk.download('punkt', quiet=True);"
+    nltk.download('stopwords', quiet=True); \
+    nltk.download('wordnet', quiet=True); \
+    nltk.download('punkt', quiet=True);"
 
 # Set up application files
 WORKDIR /app
@@ -58,6 +58,9 @@ COPY ./shared_configs /app/shared_configs
 COPY ./alembic /app/alembic
 COPY ./alembic.ini /app/alembic.ini
 COPY supervisord.conf /usr/etc/supervisord.conf
+
+# Include the license in the modified image
+COPY . ../LICENSE
 
 ENV PYTHONPATH /app
 
