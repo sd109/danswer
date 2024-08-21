@@ -67,8 +67,8 @@ export const buildDocumentSummaryDisplay = (
     }
   });
 
-  let previousIsContinuation = sections[0][2];
-  let previousIsBold = sections[0][1];
+  let previousIsContinuation = sections ? ( sections[0] ? sections[0][2] : "" ) : "";
+  let previousIsBold = sections ? ( sections[0] ? sections[0][1] : "" ) : "";
   let currentText = "";
   const finalJSX = [] as (JSX.Element | string)[];
   sections.forEach(([word, shouldBeBold, isContinuation], index) => {
